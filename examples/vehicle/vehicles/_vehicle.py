@@ -25,5 +25,6 @@ class Vehicle(idl.IdlStruct, typename="vehicles.Vehicle"):
     name: str
     x: types.int64
     y: types.int64
+    data: types.sequence[types.uint8]
 
 
