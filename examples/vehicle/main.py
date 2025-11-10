@@ -12,6 +12,8 @@ from cyclonedds.topic import Topic
 
 from vehicles import Vehicle
 
+PAYLOAD_BYTES=1024*1024
+
 # Publishes Vehicle message with additional 'data' field filled with 1MB random paybload. Topic name is passed in 'name'. 
 def vehicle_publisher(topic_name):
     domain_participant = DomainParticipant(0)
@@ -19,7 +21,7 @@ def vehicle_publisher(topic_name):
     publisher = Publisher(domain_participant)
     writer = DataWriter(publisher, topic)
 
-    random_data_buffer = os.urandom(1024*1)
+    random_data_buffer = os.urandom(PAYLOAD_BYTES)
     vehicle = Vehicle(name=topic_name, x=200, y=200, data=random_data_buffer)
 
     while True:
