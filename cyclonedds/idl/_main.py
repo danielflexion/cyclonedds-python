@@ -52,7 +52,6 @@ class IDLNamespaceScope:
 class IDL:
     def __init__(self, datatype):
         self._populated: bool = False
-        self.buffer: Buffer = Buffer()
         self.datatype: type = datatype
         self.keyless: bool = None
         self.v0_machine: Machine = None
@@ -131,7 +130,7 @@ class IDL:
                 raise Exception("Cannot encode this type with version 0, contains xcdrv2-type structures")
             use_version_2 = True
 
-        ibuffer = buffer or self.buffer
+        ibuffer = buffer or Buffer()
         ibuffer.seek(0)
         ibuffer.zero_out()
         ibuffer.set_align_offset(0)
